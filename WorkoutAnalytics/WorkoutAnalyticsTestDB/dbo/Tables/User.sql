@@ -10,6 +10,8 @@
 );
 
 
+
+
 GO
 
 CREATE TRIGGER [dbo].[Trigger_User_Weight]
@@ -20,6 +22,7 @@ CREATE TRIGGER [dbo].[Trigger_User_Weight]
         SET NoCount ON;
 		IF UPDATE (Weight)
 		BEGIN
-			INSERT INTO UserWeightHist (UserID,[Weight], WeightDate) VALUES (UserID, [Weight], GETDATE())
+			INSERT INTO UserWeightHist(UserID,[Weight], WeightDate) 
+			SELECT UserID, [Weight], GETDATE() FROM inserted  
 		END
     END

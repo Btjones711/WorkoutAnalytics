@@ -72,4 +72,7 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Workouts.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="WorkoutAnalyticsLiveDB.publish.xml" />
+  </ItemGroup>
 </Project>
