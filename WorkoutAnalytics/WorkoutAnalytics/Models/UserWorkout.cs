@@ -37,6 +37,7 @@ namespace WorkoutAnalytics.UI.Models
         public WeightUnit WeightUnits { get; set; }
         public Sentiment? SentimentID { get; set; }
         public DateTime WorkoutDate { get; set; }
+        public int Reps { get; set; }
 
         public virtual User User { get; set; }
         public virtual Workout Workout { get; set; }
