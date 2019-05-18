@@ -152,6 +152,7 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UserTemplatesController.cs" />
     <Compile Include="Controllers\UserWorkoutsController.cs" />
+    <Compile Include="Controllers\UserWorkoutTemplatesController.cs" />
     <Compile Include="DAL\IUserRepository.cs" />
     <Compile Include="DAL\WorkoutContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -222,6 +223,11 @@
     <Content Include="Views\UserWorkouts\Details.cshtml" />
     <Content Include="Views\UserWorkouts\Edit.cshtml" />
     <Content Include="Views\UserWorkouts\Index.cshtml" />
+    <Content Include="Views\UserWorkoutTemplates\Create.cshtml" />
+    <Content Include="Views\UserWorkoutTemplates\Delete.cshtml" />
+    <Content Include="Views\UserWorkoutTemplates\Details.cshtml" />
+    <Content Include="Views\UserWorkoutTemplates\Edit.cshtml" />
+    <Content Include="Views\UserWorkoutTemplates\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
