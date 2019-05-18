@@ -149,6 +149,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserTemplatesController.cs" />
+    <Compile Include="Controllers\UserWorkoutsController.cs" />
     <Compile Include="DAL\IUserRepository.cs" />
     <Compile Include="DAL\WorkoutContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -204,6 +207,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\UserTemplates\Create.cshtml" />
+    <Content Include="Views\UserTemplates\Delete.cshtml" />
+    <Content Include="Views\UserTemplates\Details.cshtml" />
+    <Content Include="Views\UserTemplates\Edit.cshtml" />
+    <Content Include="Views\UserTemplates\Index.cshtml" />
+    <Content Include="Views\UserWorkouts\Create.cshtml" />
+    <Content Include="Views\UserWorkouts\Delete.cshtml" />
+    <Content Include="Views\UserWorkouts\Details.cshtml" />
+    <Content Include="Views\UserWorkouts\Edit.cshtml" />
+    <Content Include="Views\UserWorkouts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
