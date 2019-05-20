@@ -1,0 +1,26 @@
+﻿@model WorkoutAnalytics.UI.Models.Workout
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Workout</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkoutBodyArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkoutBodyArea)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
