@@ -49,11 +49,19 @@ namespace WorkoutAnalytics.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserID,UserName,Password,Gender,Height,Weight")] User user)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name after DataException and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
             return View(user);
@@ -81,11 +89,19 @@ namespace WorkoutAnalytics.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "UserID,UserName,Password,Gender,Height,Weight")] User user)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name after DataException and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return View(user);
         }
