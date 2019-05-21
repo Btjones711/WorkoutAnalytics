@@ -1,0 +1,152 @@
+﻿@model WorkoutAnalytics.UI.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+    </dl>
+    <div>
+        @Html.LabelFor(model => model.WeightHistory)
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Weight</th>
+            </tr>
+            @foreach (var weight in Model.WeightHistory)
+            {
+                <tr>
+                    <td>
+                        @{ var dateFormated = weight.WeightDate.ToShortDateString(); }
+                        @Html.DisplayFor(modelItem => dateFormated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => weight.UserWeight)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.WorkoutHistory)
+    </div>
+    <div>
+        <label>Weights</label>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Reps</th>
+                <th>Weight Lifted</th>
+                <th>Sentiment</th>
+            </tr>
+            @foreach (var workout in Model.WorkoutHistory.Where(w => w.WorkoutDesc != "Run"))
+            {
+            <tr>
+                <td>
+                    @{ var dateFormated = workout.WorkoutDate.ToShortDateString(); }
+                    @Html.DisplayFor(modelItem => dateFormated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => workout.WorkoutDesc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => workout.Reps)
+                </td>
+                <td>
+                    @{ var weightLifted = workout.WeightLifted.ToString() + " " + workout.WeightUnits.ToString();}
+                    @Html.DisplayFor(modelItem => weightLifted)
+                </td>
+                <td>
+                    @{ var sentiment = workout.SentimentID.ToString(); }
+                    @Html.DisplayFor(modelItem => sentiment)
+                </td>
+            </tr>
+            }
+        </table>
+        <label>Cardio</label>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Time Ran</th>
+                <th>Weight Lifted</th>
+                <th>Sentiment</th>
+            </tr>
+            @foreach (var workout in Model.WorkoutHistory.Where(w => w.WorkoutDesc == "Run"))
+            {
+            <tr>
+                <td>
+                    @{ var dateFormated = workout.WorkoutDate.ToShortDateString(); }
+                    @Html.DisplayFor(modelItem => dateFormated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => workout.WorkoutDesc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => workout.TimeOfWorkout)
+                </td>
+                <td>
+                    @{ var weightLifted = workout.Distance.ToString() + " " + workout.DistanceUnits.ToString();}
+                    @Html.DisplayFor(modelItem => weightLifted)
+                </td>
+                <td>
+                    @{ var sentiment = workout.SentimentID.ToString(); }
+                    @Html.DisplayFor(modelItem => sentiment)
+                </td>
+            </tr>
+    }
+        </table>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

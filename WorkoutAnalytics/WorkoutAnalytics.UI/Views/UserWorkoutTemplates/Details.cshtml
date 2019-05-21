@@ -1,0 +1,34 @@
+﻿@model WorkoutAnalytics.UI.Models.UserWorkoutTemplate
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserWorkoutTemplate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserTemplate.TemplateDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserTemplate.TemplateDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Workout.WorkoutBodyArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Workout.WorkoutBodyArea)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
