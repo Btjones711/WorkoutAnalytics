@@ -10,6 +10,7 @@
     [SentimentID] INT NULL, 
     [WorkoutDate] DATETIME NULL, 
     [UserWorkoutID] INT NOT NULL IDENTITY, 
+    [Reps] INT NULL, 
     CONSTRAINT [FK_UserWorkouts_ToTable] FOREIGN KEY (UserID) REFERENCES [User]([UserID]), 
     PRIMARY KEY ([UserWorkoutID])
 )

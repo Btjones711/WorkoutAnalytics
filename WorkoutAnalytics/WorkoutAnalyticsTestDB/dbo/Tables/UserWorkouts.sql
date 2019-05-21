@@ -9,7 +9,10 @@
     [SentimentID]   INT      NULL,
     [WorkoutDate]   DATETIME NULL,
     [UserWorkoutID] INT      IDENTITY (1, 1) NOT NULL,
+    [Reps]          INT      NULL,
     PRIMARY KEY CLUSTERED ([UserWorkoutID] ASC),
     CONSTRAINT [FK_UserWorkouts_ToTable] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([UserId])
 );
+
+
 

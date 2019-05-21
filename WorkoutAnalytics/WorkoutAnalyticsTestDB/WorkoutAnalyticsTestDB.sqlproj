@@ -66,5 +66,7 @@
     <Build Include="dbo\Tables\UserWeightHist.sql" />
     <Build Include="dbo\Tables\UserPredictionData.sql" />
     <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\UserWorkoutTemplates.sql" />
+    <Build Include="dbo\Tables\UserTemplates.sql" />
   </ItemGroup>
 </Project>
