@@ -14,13 +14,18 @@
         <th>
             @Html.DisplayNameFor(model => model.WorkoutBodyArea)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkoutDesc)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.WorkoutBodyArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkoutDesc)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

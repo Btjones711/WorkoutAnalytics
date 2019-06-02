@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - Workout Analytics</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("featured", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -22,10 +23,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("User Maintenance", "Index", "User")</li>
-                    <li>@Html.ActionLink("Workout Maintenance", "Index", "Workout")</li>
-                    <li>@Html.ActionLink("About", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "Index", "Home")</li>
+                    <li>@Html.ActionLink("User Maintenance", "Index", "Users")</li>
+                    <li>@Html.ActionLink("Workout Maintenance", "Index", "Workouts")</li>
                 </ul>
             </div>
         </div>
@@ -34,7 +33,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Workout Analytics</p>
         </footer>
     </div>
 
