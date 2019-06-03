@@ -16,9 +16,27 @@ namespace WorkoutAnalytics.UI.Controllers
         private WorkoutContext db = new WorkoutContext();
 
         // GET: Workouts
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(db.Workouts.ToList());
+            ViewBag.WorkoutDescParam = String.IsNullOrEmpty(sortOrder) ? "WorkoutDesc_desc" : "";
+            ViewBag.WorkoutBodyAreaParam = sortOrder == "BodyArea" ? "BodyArea_desc" : "BodyArea";
+            var workouts = from w in db.Workouts select w;
+            switch (sortOrder)
+            {
+                case "WorkoutDesc_desc":
+                    workouts = workouts.OrderByDescending(w => w.WorkoutDesc);
+                    break;
+                case "BodyArea_desc":
+                    workouts = workouts.OrderByDescending(w => w.WorkoutBodyArea);
+                    break;
+                case "BodyArea":
+                    workouts = workouts.OrderBy(w => w.WorkoutBodyArea);
+                    break;
+                default:
+                    workouts = workouts.OrderBy(w => w.WorkoutDesc);
+                    break;
+            }
+            return View(workouts.ToList());
         }
 
         // GET: Workouts/Details/5

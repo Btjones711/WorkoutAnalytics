@@ -12,10 +12,12 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.WorkoutBodyArea)
+            @Html.ActionLink("Body Area", "Index", new { sortOrder = ViewBag.WorkoutBodyAreaParam })
+            @*@Html.DisplayNameFor(model => model.WorkoutBodyArea)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WorkoutDesc)
+            @Html.ActionLink("Workout Description", "Index", new { sortOrder = ViewBag.WorkoutDescParam })
+            @*@Html.DisplayNameFor(model => model.WorkoutDesc)*@
         </th>
     </tr>
 
