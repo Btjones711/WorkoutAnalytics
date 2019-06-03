@@ -16,9 +16,6 @@
             @Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.UserNameSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Gender)
         </th>
         <th>
@@ -34,9 +31,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
             @{ var genderDisplay = item.Gender ? "M" : "F"; }
