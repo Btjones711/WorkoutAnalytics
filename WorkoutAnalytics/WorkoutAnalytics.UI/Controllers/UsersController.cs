@@ -107,11 +107,11 @@ namespace WorkoutAnalytics.UI.Controllers
         }
 
         // GET: Users/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(bool? saveChangesError=false, int id = 0)
         {
-            if (id == null)
+            if (saveChangesError.GetValueOrDefault())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
             User user = db.Users.Find(id);
             if (user == null)
@@ -124,11 +124,18 @@ namespace WorkoutAnalytics.UI.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            try
+            {
+                User user = db.Users.Find(id);
+                db.Users.Remove(user);
+                db.SaveChanges();
+            }
+            catch(DataException/* dex */)
+            {
+                return RedirectToAction("Delete", new {  id, saveChangesError = true });
+            }
             return RedirectToAction("Index");
         }
 
