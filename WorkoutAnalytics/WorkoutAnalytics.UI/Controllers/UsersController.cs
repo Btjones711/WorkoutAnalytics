@@ -16,9 +16,20 @@ namespace WorkoutAnalytics.UI.Controllers
         private WorkoutContext db = new WorkoutContext();
 
         // GET: Users
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(db.Users.ToList());
+            ViewBag.UserNameSortParam = String.IsNullOrEmpty(sortOrder) ? "Username_desc" : "";
+            var users = from u in db.Users select u;
+            switch (sortOrder)
+            {
+                case "Username_desc":
+                    users = users.OrderByDescending(u => u.UserName);
+                    break;
+                default:
+                    users = users.OrderBy(u => u.UserName);
+                    break;
+            }
+            return View(users.ToList());
         }
 
         // GET: Users/Details/5
