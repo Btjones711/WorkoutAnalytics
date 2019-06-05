@@ -16,10 +16,14 @@ namespace WorkoutAnalytics.UI.Controllers
         private WorkoutContext db = new WorkoutContext();
 
         // GET: Users
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.UserNameSortParam = String.IsNullOrEmpty(sortOrder) ? "Username_desc" : "";
             var users = from u in db.Users select u;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(u => u.UserName.ToUpper().Contains(searchString.ToUpper()));
+            }
             switch (sortOrder)
             {
                 case "Username_desc":

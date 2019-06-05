@@ -16,11 +16,15 @@ namespace WorkoutAnalytics.UI.Controllers
         private WorkoutContext db = new WorkoutContext();
 
         // GET: Workouts
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.WorkoutDescParam = String.IsNullOrEmpty(sortOrder) ? "WorkoutDesc_desc" : "";
             ViewBag.WorkoutBodyAreaParam = sortOrder == "BodyArea" ? "BodyArea_desc" : "BodyArea";
             var workouts = from w in db.Workouts select w;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                workouts = workouts.Where(w => w.WorkoutDesc.ToUpper().Contains(searchString.ToUpper()));
+            }
             switch (sortOrder)
             {
                 case "WorkoutDesc_desc":
