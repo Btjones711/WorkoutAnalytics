@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WorkoutAnalytics.UI.DAL;
 using WorkoutAnalytics.UI.Models;
+using PagedList;
 
 namespace WorkoutAnalytics.UI.Controllers
 {
@@ -16,9 +17,39 @@ namespace WorkoutAnalytics.UI.Controllers
         private WorkoutContext db = new WorkoutContext();
 
         // GET: Users
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Users.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.UserNameSortParam = String.IsNullOrEmpty(sortOrder) ? "Username_desc" : "";
+
+            if(searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var users = from u in db.Users select u;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(u => u.UserName.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "Username_desc":
+                    users = users.OrderByDescending(u => u.UserName);
+                    break;
+                default:
+                    users = users.OrderBy(u => u.UserName);
+                    break;
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(users.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Users/Details/5

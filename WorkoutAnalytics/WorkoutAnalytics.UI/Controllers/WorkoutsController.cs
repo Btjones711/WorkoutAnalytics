@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WorkoutAnalytics.UI.DAL;
 using WorkoutAnalytics.UI.Models;
+using PagedList;
 
 namespace WorkoutAnalytics.UI.Controllers
 {
@@ -16,9 +17,45 @@ namespace WorkoutAnalytics.UI.Controllers
         private WorkoutContext db = new WorkoutContext();
 
         // GET: Workouts
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Workouts.ToList());
+            ViewBag.WorkoutDescParam = String.IsNullOrEmpty(sortOrder) ? "WorkoutDesc_desc" : "";
+            ViewBag.WorkoutBodyAreaParam = sortOrder == "BodyArea" ? "BodyArea_desc" : "BodyArea";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var workouts = from w in db.Workouts select w;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                workouts = workouts.Where(w => w.WorkoutDesc.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "WorkoutDesc_desc":
+                    workouts = workouts.OrderByDescending(w => w.WorkoutDesc);
+                    break;
+                case "BodyArea_desc":
+                    workouts = workouts.OrderByDescending(w => w.WorkoutBodyArea);
+                    break;
+                case "BodyArea":
+                    workouts = workouts.OrderBy(w => w.WorkoutBodyArea);
+                    break;
+                default:
+                    workouts = workouts.OrderBy(w => w.WorkoutDesc);
+                    break;
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(workouts.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Workouts/Details/5

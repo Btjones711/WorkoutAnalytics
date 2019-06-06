@@ -1,38 +1,49 @@
-﻿@model IEnumerable<WorkoutAnalytics.UI.Models.Workout>
+﻿@model PagedList.IPagedList<WorkoutAnalytics.UI.Models.Workout>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Workouts";
 }
 
-<h2>Index</h2>
+<h2>Workouts</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index", "Workout", FormMethod.Get))
+{
+    <p>Find by Workout: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)<input type="submit" value="Search" /></p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.WorkoutBodyArea)
+            @Html.ActionLink("Body Area", "Index", new { sortOrder = ViewBag.WorkoutBodyAreaParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WorkoutDesc)
+            @Html.ActionLink("Workout Description", "Index", new { sortOrder = ViewBag.WorkoutDescParam })
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.WorkoutBodyArea)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WorkoutDesc)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkoutBodyArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkoutDesc)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
