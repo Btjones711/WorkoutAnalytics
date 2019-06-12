@@ -16,6 +16,8 @@ namespace WorkoutAnalytics.UI.Models
         public int UserWeight { get; set; }
         [Key]
         [Column(Order = 2)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime WeightDate { get; set; }
         [ForeignKey("UserID")]
         public virtual User User { get; set; }
