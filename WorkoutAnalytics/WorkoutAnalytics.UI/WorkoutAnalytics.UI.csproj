@@ -170,6 +170,10 @@
     <Compile Include="Migrations\201905170551581_InitialCreate.Designer.cs">
       <DependentUpon>201905170551581_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906120336469_remove-workout-desc-foreignkey.cs" />
+    <Compile Include="Migrations\201906120336469_remove-workout-desc-foreignkey.Designer.cs">
+      <DependentUpon>201906120336469_remove-workout-desc-foreignkey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserTemplate.cs" />
@@ -269,6 +273,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905170551581_InitialCreate.resx">
       <DependentUpon>201905170551581_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906120336469_remove-workout-desc-foreignkey.resx">
+      <DependentUpon>201906120336469_remove-workout-desc-foreignkey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

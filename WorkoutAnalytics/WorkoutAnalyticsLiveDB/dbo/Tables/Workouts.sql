@@ -1,6 +1,8 @@
-﻿CREATE TABLE [dbo].[Workouts]
-(
-	[WorkoutID] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [WorkoutDesc] VARCHAR(50) NOT NULL, 
-    [WorkoutBodyArea] VARCHAR(50) NOT NULL
-)
+﻿CREATE TABLE [dbo].[Workouts] (
+    [WorkoutID]       INT            IDENTITY (1, 1) NOT NULL,
+    [WorkoutDesc]     NVARCHAR (MAX) NULL,
+    [WorkoutBodyArea] NVARCHAR (MAX) NULL,
+    CONSTRAINT [PK_dbo.Workouts] PRIMARY KEY CLUSTERED ([WorkoutID] ASC)
+);
+
+

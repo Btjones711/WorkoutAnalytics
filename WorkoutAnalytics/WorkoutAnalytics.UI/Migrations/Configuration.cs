@@ -29,7 +29,7 @@ namespace WorkoutAnalytics.UI.Migrations
             };
             users.ForEach(u => context.Users.AddOrUpdate(u));
             context.SaveChanges();
-            var firstUser = context.Users.Single(s => s.UserName == "Btjones").UserID;
+            var firstUser = context.Users.First(s => s.UserName == "Btjones").UserID;
             var weights = new List<Weight>(){
                 new Weight { UserID = firstUser, UserWeight=158, WeightDate=new DateTime(2019,5,5)},
                 new Weight { UserID = firstUser, UserWeight=160, WeightDate=new DateTime(2018,5,5)},
@@ -50,17 +50,17 @@ namespace WorkoutAnalytics.UI.Migrations
             var userWorkouts = new List<UserWorkout>()
             {
                 new UserWorkout{
-                    WorkoutID = context.Workouts.Single(s => s.WorkoutDesc == "Biceps Curl").WorkoutID,
+                    WorkoutID = context.Workouts.First(s => s.WorkoutDesc == "Biceps Curl").WorkoutID,
                     Reps = 10, WeightLifted = 35, WeightUnits = WeightUnit.lbs, SentimentID = Sentiment.Exhausted,
                      WorkoutDate = DateTime.Today, UserID = firstUser
                 },
                 new UserWorkout{
-                    WorkoutID = context.Workouts.Single(s => s.WorkoutDesc == "Rope Pulldown").WorkoutID,
+                    WorkoutID = context.Workouts.First(s => s.WorkoutDesc == "Rope Pulldown").WorkoutID,
                     Reps = 12, WeightLifted = 25, WeightUnits = WeightUnit.kg, SentimentID = Sentiment.Good,
                      WorkoutDate = DateTime.Today, UserID = firstUser
                 },
                 new UserWorkout{
-                    WorkoutID = context.Workouts.Single(s => s.WorkoutDesc == "Run").WorkoutID,
+                    WorkoutID = context.Workouts.First(s => s.WorkoutDesc == "Run").WorkoutID,
                      TimeOfWorkout = 20,  Distance = 3, DistanceUnits = DistanceUnit.Miles, SentimentID = Sentiment.Exhausted,
                      WorkoutDate = DateTime.Today, UserID = firstUser
                 }
@@ -78,8 +78,8 @@ namespace WorkoutAnalytics.UI.Migrations
             var userTemplateWorkouts = new List<UserWorkoutTemplate>()
             {
                 new UserWorkoutTemplate{
-                    TemplateID = context.UserTemplates.Single(s => s.UserID == firstUser && s.TemplateDesc == "Back and Biceps").TemplateID,
-                    WorkoutID = context.Workouts.Single(s => s.WorkoutDesc == "Biceps").WorkoutID
+                    TemplateID = context.UserTemplates.First(s => s.UserID == firstUser && s.TemplateDesc == "Back and Biceps").TemplateID,
+                    WorkoutID = context.Workouts.First(s => s.WorkoutDesc.Contains("Biceps")).WorkoutID
                 }
             };
             userTemplateWorkouts.ForEach(u => context.UserWorkoutTemplates.AddOrUpdate(p => new { p.TemplateID, p.WorkoutID }, u));
