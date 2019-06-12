@@ -15,11 +15,10 @@ namespace WorkoutAnalytics.UI.Models
         public int Id { get; set; }
         public int TemplateID { get; set; }
         public int WorkoutID { get; set; }
-        public string WorkoutDesc { get; set; }
 
         [ForeignKey("TemplateID")]
         public virtual UserTemplate UserTemplate { get; set; }
-        [ForeignKey("WorkoutID, WorkoutDesc")]
+        [ForeignKey("WorkoutID")]
         public virtual Workout Workout { get; set; }
     }
 }
