@@ -34,7 +34,6 @@ namespace WorkoutAnalytics.UI.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserWorkoutID { get; set; }
         public int WorkoutID { get; set; }
-        public string WorkoutDesc { get; set; }
         public int UserID { get; set; }
         public int WeightLifted { get; set; }
         public int TimeOfWorkout { get; set; }
@@ -42,12 +41,14 @@ namespace WorkoutAnalytics.UI.Models
         public DistanceUnit DistanceUnits { get; set; }
         public WeightUnit WeightUnits { get; set; }
         public Sentiment? SentimentID { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime WorkoutDate { get; set; }
         public int Reps { get; set; }
 
         [ForeignKey("UserID")]
         public virtual User User { get; set; }
-        [ForeignKey("WorkoutID, WorkoutDesc")]
+        [ForeignKey("WorkoutID")]
         public virtual Workout Workout { get; set; }
     }
 }

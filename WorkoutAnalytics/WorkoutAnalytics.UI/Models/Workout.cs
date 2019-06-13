@@ -14,8 +14,6 @@ namespace WorkoutAnalytics.UI.Models
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WorkoutID { get; set; }
-        [Key]
-        [Column(Order = 2)]
         public string WorkoutDesc { get; set; }
         public string WorkoutBodyArea { get; set; }
     }

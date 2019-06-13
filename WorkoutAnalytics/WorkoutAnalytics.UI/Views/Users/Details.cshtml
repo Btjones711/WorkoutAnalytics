@@ -19,14 +19,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Gender)
         </dt>
 
@@ -87,7 +79,7 @@
                 <th>Weight Lifted</th>
                 <th>Sentiment</th>
             </tr>
-            @foreach (var workout in Model.WorkoutHistory.Where(w => w.WorkoutDesc != "Run"))
+            @foreach (var workout in Model.WorkoutHistory.Where(w => w.Workout.WorkoutDesc != "Run"))
             {
             <tr>
                 <td>
@@ -95,7 +87,7 @@
                     @Html.DisplayFor(modelItem => dateFormated)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => workout.WorkoutDesc)
+                    @Html.DisplayFor(modelItem => workout.Workout.WorkoutDesc)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => workout.Reps)
@@ -120,7 +112,7 @@
                 <th>Weight Lifted</th>
                 <th>Sentiment</th>
             </tr>
-            @foreach (var workout in Model.WorkoutHistory.Where(w => w.WorkoutDesc == "Run"))
+            @foreach (var workout in Model.WorkoutHistory.Where(w => w.Workout.WorkoutDesc == "Run"))
             {
             <tr>
                 <td>
@@ -128,7 +120,7 @@
                     @Html.DisplayFor(modelItem => dateFormated)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => workout.WorkoutDesc)
+                    @Html.DisplayFor(modelItem => workout.Workout.WorkoutDesc)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => workout.TimeOfWorkout)

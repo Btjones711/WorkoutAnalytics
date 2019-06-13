@@ -49,6 +49,7 @@ namespace WorkoutAnalytics.UI.Controllers
             }
             int pageSize = 3;
             int pageNumber = (page ?? 1);
+
             return View(users.ToPagedList(pageNumber, pageSize));
         }
 

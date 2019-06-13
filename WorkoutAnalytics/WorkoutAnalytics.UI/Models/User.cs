@@ -13,6 +13,8 @@ namespace WorkoutAnalytics.UI.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserID { get; set; }
+        [StringLength(450)]
+        [Index(IsUnique = true)]
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool Gender { get; set; }
